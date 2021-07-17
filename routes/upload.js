@@ -14,7 +14,7 @@ cloudinary.config({
 
 // upload image
 
-router.post("/upload",auth,authAdmin, (req,res)=>{
+router.post("/upload", (req,res)=>{
 
     try{
       console.log(req.files)
@@ -53,7 +53,7 @@ router.post("/upload",auth,authAdmin, (req,res)=>{
 
 //delete image only admin
 
-router.post("/destroy",auth,authAdmin,(req,res)=>{
+router.post("/destroy",(req,res)=>{
   
   try{
   const {public_id} = req.body
