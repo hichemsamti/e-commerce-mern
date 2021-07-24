@@ -2,6 +2,7 @@ import React ,{useContext, useState, useEffect} from 'react'
 import {useParams, Link} from "react-router-dom"
 import {GlobalState} from "../../../GlobalState"
 import "./productDetail.css"
+import ProductItem from "../utils/productItem/ProductItem"
 
 
 export default function DetailProduct() {
@@ -12,24 +13,26 @@ export default function DetailProduct() {
     console.log(params)
 
     useEffect(()=>{
-        if(params)(
+        console.log("re render")
+        if(params.id)(
             products.forEach(product =>{
                 if(product._id === params.id ) setDetailProduct(product)
             })
         )
 
-    },[params,products])
+    },[params.id,products])
 
     console.log(detailProduct)
     if(detailProduct.length ===0) return null
     return (
+        <>
         <div className="detail">
             <img src={detailProduct.images.url} alt=""/>
 
            <div className="box-detail">
                 <div className="row">
                     <h2>{detailProduct.title}</h2>
-                    <h6>{detailProduct.product_id}</h6>
+                    <h6> #id:{detailProduct.product_id}</h6>
 
 
                 </div>
@@ -42,5 +45,18 @@ export default function DetailProduct() {
            </div>
 
         </div>
+
+        <div>
+           <h2>Related products</h2>
+           <div className="products">
+               {
+                   products.map(product =>{
+                       return product.category === detailProduct.category
+                       ? <ProductItem key={product._id} product={product} /> : null
+                   } )
+               }
+           </div>
+        </div>
+    </>
     )
 }
