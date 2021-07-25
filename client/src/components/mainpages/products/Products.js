@@ -2,6 +2,7 @@ import React, {useContext} from 'react'
 import {GlobalState} from "../../../GlobalState"
 import ProductItem from "../utils/productItem/ProductItem"
 import "./products.css"
+import Loading from "../utils/loading/Loading"
 
 
 export default function Products() {
@@ -10,6 +11,7 @@ export default function Products() {
 
     console.log(products)
     return (
+        <>
         <div className="products">
             {
                 products.map(product => {
@@ -18,5 +20,7 @@ export default function Products() {
             }
            
         </div>
+        {products.length === 0 && <Loading/>}
+        </>
     )
 }
