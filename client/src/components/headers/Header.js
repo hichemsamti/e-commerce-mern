@@ -6,7 +6,8 @@ import Cart from  "./icon/shopping-cart-solid.svg"
 import {Link} from 'react-router-dom'
 import "./header.css"
 export default function Header() {
-    const value = useContext(GlobalState)
+    const state = useContext(GlobalState)
+    console.log(state)
     
     return (
         <header>
