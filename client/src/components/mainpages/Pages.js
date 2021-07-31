@@ -16,7 +16,7 @@ export default function Pages() {
         <Switch>
             <Route path="/" exact component={Products}/>
             <Route path="/detail/:id" exact component={DetailProduct}/>
-            <Route path="/login" exact component={isLogged ? NotFound : Login}/>
+            <Route path="/login" exact component={ Login}/>
             <Route path="/register" exact component={isLogged ? NotFound : Register}/>
             <Route path="/cart" exact component={Cart}/>
             

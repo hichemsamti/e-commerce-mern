@@ -3,6 +3,7 @@ import {GlobalState} from "../../../GlobalState"
 import {Link} from "react-router-dom"
 import "./cart.css"
 import axios from "axios"
+import PaypalButton from "./PaypalButton"
 
 
 export default function Cart() {
@@ -31,7 +32,9 @@ export default function Cart() {
 
    const addToCart =  async () =>{
 
-    
+      await axios.patch("/user/addcart",{cart},{
+          headers: {Authorization:token}
+      })
    }
 
    const increment = (id) =>{
@@ -42,6 +45,7 @@ export default function Cart() {
        })
 
        setCart([...cart])
+       addToCart()
    }
 
    const decrement = (id) =>{
@@ -52,6 +56,7 @@ export default function Cart() {
        })
 
        setCart([...cart])
+       addToCart()
    }
 
    const removeProduct = id =>{
@@ -64,7 +69,12 @@ export default function Cart() {
            })
 
            setCart([...cart])
+           addToCart()
        }
+   }
+
+   const transSuccess = async(payment) =>{
+       console.log(payment)
    }
 
     if(cart.length===0)
@@ -110,7 +120,10 @@ export default function Cart() {
 
             <div className="total">
                  <h3>Total:$ {total}</h3>
-                 <Link to="#!">Payment</Link>
+                 <PaypalButton
+                 total={total}
+                 transSuccess={transSuccess}
+                 />
             </div>
         </div>
     )
