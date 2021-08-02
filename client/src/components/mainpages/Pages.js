@@ -7,6 +7,7 @@ import Cart from "./cart/Cart"
 import NotFound from "./utils/notFound/NotFound"
 import DetailProduct from "./detailProduct/DetailProduct"
 import {GlobalState} from "../../GlobalState"
+import History from "./history/History"
 
 export default function Pages() {
 
@@ -19,6 +20,7 @@ export default function Pages() {
             <Route path="/login" exact component={ Login}/>
             <Route path="/register" exact component={isLogged ? NotFound : Register}/>
             <Route path="/cart" exact component={Cart}/>
+            <Route path="/history" exact component={isLogged ? History : NotFound}/>
             
             <Route path="*" exact component={NotFound}/>
         </Switch>

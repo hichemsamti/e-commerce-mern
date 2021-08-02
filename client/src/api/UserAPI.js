@@ -5,6 +5,7 @@ export default function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
+    const [history, setHistory] = useState([])
 
 
     useEffect(() =>{
@@ -38,6 +39,24 @@ export default function UserAPI(token) {
 
     },[token])
 
+    useEffect(() =>{
+
+         if(token){
+             const getHistory = async() =>{
+                 const res= await axios.get('/user/history',{
+                     headers: {Authorization : token}
+                 })
+
+                 //console.log(res)
+                 setHistory(res.data)
+             }
+         
+         getHistory()
+
+            }
+
+    },[token])
+
     const addCart = async (product) => {
         if(!isLogged) return  alert("Please login to continue buying")
         
@@ -67,6 +86,8 @@ export default function UserAPI(token) {
         isAdmin:[isAdmin, setIsAdmin],
         addCart: addCart,
         cart: [cart, setCart],
+        history:[history,setHistory]
+
     }
 }
 

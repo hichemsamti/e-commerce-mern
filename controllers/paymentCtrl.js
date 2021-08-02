@@ -29,6 +29,8 @@ const paymentCtrl = {
             const {cart, paymentID, address} = req.body
             const {_id, name, email} = user
 
+           
+
             const newPayment = new Payments ({
                 user_id:_id,
                 name,
@@ -37,16 +39,31 @@ const paymentCtrl = {
                 address
             })
 
-            res.json({newPayment})
+
+           cart.filter(item=>{
+               return sold(item._id,item.quantity, item.sold)
+           })
+            
+            
+            await newPayment.save()
+            res.json({msg: "Payment Success"})
 
 
         } catch(err){
+
+            console.log(err)
 
             return res.status(500).json({msg: err.message})
         }
     }
 
 
+}
+
+const sold= async(id,quantity,oldSold) =>{
+    await Products.findOneAndUpdate({_id:id},{
+        sold:quantity + oldSold
+    })
 }
 
 module.exports = paymentCtrl

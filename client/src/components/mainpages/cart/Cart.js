@@ -30,7 +30,7 @@ export default function Cart() {
         
    },[cart]) 
 
-   const addToCart =  async () =>{
+   const addToCart =  async (cart) =>{
 
       await axios.patch("/user/addcart",{cart},{
           headers: {Authorization:token}
@@ -45,7 +45,7 @@ export default function Cart() {
        })
 
        setCart([...cart])
-       addToCart()
+       addToCart(cart)
    }
 
    const decrement = (id) =>{
@@ -56,7 +56,7 @@ export default function Cart() {
        })
 
        setCart([...cart])
-       addToCart()
+       addToCart(cart)
    }
 
    const removeProduct = id =>{
@@ -69,12 +69,30 @@ export default function Cart() {
            })
 
            setCart([...cart])
-           addToCart()
+           addToCart(cart)
        }
    }
 
    const transSuccess = async(payment) =>{
+
+    
        console.log(payment)
+       const  {paymentID, address} = payment
+
+      const res= await axios.post("/api/payment", {cart, paymentID, address},{
+           headers: {Authorization:token}
+
+       })
+
+       
+
+       setCart([])
+       console.log(cart)
+       addToCart([])
+
+       
+       alert("You have successfully placed an order.")
+    
    }
 
     if(cart.length===0)
