@@ -8,6 +8,7 @@ import NotFound from "./utils/notFound/NotFound"
 import DetailProduct from "./detailProduct/DetailProduct"
 import {GlobalState} from "../../GlobalState"
 import History from "./history/History"
+import SingleHistory from "./history/SingleHistory"
 
 export default function Pages() {
 
@@ -21,7 +22,7 @@ export default function Pages() {
             <Route path="/register" exact component={isLogged ? NotFound : Register}/>
             <Route path="/cart" exact component={Cart}/>
             <Route path="/history" exact component={isLogged ? History : NotFound}/>
-            
+            <Route  path="/history/:id" exact component={isLogged ? SingleHistory : NotFound}/>
             <Route path="*" exact component={NotFound}/>
         </Switch>
     )

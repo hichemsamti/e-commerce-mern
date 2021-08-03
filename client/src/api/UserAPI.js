@@ -6,6 +6,7 @@ export default function UserAPI(token) {
     const [isAdmin, setIsAdmin] = useState(false)
     const [cart, setCart] = useState([])
     const [history, setHistory] = useState([])
+    const [callback, setCallback] = useState(false)
 
 
     useEffect(() =>{
@@ -55,7 +56,7 @@ export default function UserAPI(token) {
 
             }
 
-    },[token])
+    },[token,callback])
 
     const addCart = async (product) => {
         if(!isLogged) return  alert("Please login to continue buying")
@@ -86,7 +87,9 @@ export default function UserAPI(token) {
         isAdmin:[isAdmin, setIsAdmin],
         addCart: addCart,
         cart: [cart, setCart],
-        history:[history,setHistory]
+        history:[history,setHistory],
+        callback: [callback, setCallback]
+
 
     }
 }
