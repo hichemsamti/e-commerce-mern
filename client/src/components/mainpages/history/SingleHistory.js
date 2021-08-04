@@ -20,7 +20,7 @@ export default function SingleHistory() {
         }
     },[params.id,history])
 
-    console.log(orderDetails)
+  //  console.log(orderDetails)
     if(orderDetails.length === 0) return null
     return (
         <div className="history-page">
@@ -57,6 +57,7 @@ export default function SingleHistory() {
            <table style={{margin : "30px 0px"}}>   
                    <thead>
                      <tr>
+                       <th></th>
                        <th>Products</th>
                        <th>Quantity</th>
                        <th>Price</th>
@@ -70,7 +71,7 @@ export default function SingleHistory() {
 
                         {
 
-                           orderDetails.toLocaleString.map( item =>(
+                           orderDetails.cart.map( item =>(
                                
                             <tr key={item._id}>
 
