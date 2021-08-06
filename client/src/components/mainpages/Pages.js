@@ -10,6 +10,7 @@ import {GlobalState} from "../../GlobalState"
 import History from "./history/History"
 import SingleHistory from "./history/SingleHistory"
 import Categories from "./categories/Categories"
+import CreateProduct from './createProduct/CreateProduct'
 
 export default function Pages() {
 
@@ -26,7 +27,9 @@ export default function Pages() {
             <Route path="/history" exact component={isLogged ? History : NotFound}/>
             <Route  path="/category" exact component={isAdmin ? Categories : NotFound}/>
             <Route  path="/history/:id" exact component={isLogged ? SingleHistory : NotFound}/>
+            <Route path="/create_product" exact component= {isAdmin ? CreateProduct : NotFound}/>
             <Route path="*" exact component={NotFound}/>
+            
         </Switch>
     )
 }
