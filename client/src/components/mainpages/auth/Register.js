@@ -19,7 +19,7 @@ export default function Register() {
 
             await axios.post("/user/register",{...user})
 
-            //localStorage.setItem("firstLogin",true)
+            localStorage.setItem("firstLogin",true)
 
             window.location.href = "/"
 
