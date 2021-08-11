@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import {GlobalState} from "../../../GlobalState"
+import "./products.css"
 
 export default function Filters() {
 
@@ -13,6 +14,7 @@ export default function Filters() {
   const handleCategory = e => {
 
        setCategory(e.target.value)
+       setSearch("")
 
   }
 

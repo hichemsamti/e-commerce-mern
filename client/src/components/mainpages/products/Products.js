@@ -5,6 +5,7 @@ import "./products.css"
 import Loading from "../utils/loading/Loading"
 import axios from "axios"
 import Filters from "./Filters"
+import LoadMore from "./LoadMore"
 
 
 export default function Products() {
@@ -104,6 +105,7 @@ const deleteAll = () =>{
             }
            
         </div>
+        <LoadMore />
         {products.length === 0 && <Loading/>}
         </>
     )

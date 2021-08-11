@@ -12,28 +12,33 @@ class APIfeatures {
        
        
         const queryObj = {...this.queryString} // queryString = req.query
-        //console.log({hi:this.queryString})
-        //console.log(queryObj)
+       // console.log({hi:this.queryString})
+       // console.log({queryObj})
         const excludedFields = ["page", "sort", "limit"]
         excludedFields.forEach(el=>delete(queryObj[el]
         ))
-       // console.log(queryObj)
+       // console.log({2:queryObj})
 
         let queryStr  =JSON.stringify(queryObj)      
         queryStr =queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g,match => "$" + match)
-       // console.log({after: queryStr})
-        this.query.find(JSON.parse(queryStr))
+       //console.log({after: queryStr})
+       const rt = this.query.find(JSON.parse(queryStr))
+    // console.log({3:rt})
         return this
     }
 
 
     sorting(){
-
+          console.log({this:this.queryString})
         if(this.queryString.sort){
             
             const sortBy = this.queryString.sort.split(',').join(' ')
             
+            console.log({sortBy})
+
             this.query= this.query.sort(sortBy)
+
+            console.log({final:this.query})
 
         }else{
             this.query = this.query.sort("-createdAt")
