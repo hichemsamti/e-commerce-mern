@@ -42,7 +42,7 @@ export default function Filters() {
             <input type="text" value={search} placeholder ="Enter your search"
              onChange={e=>setSearch(e.target.value.toLowerCase())}
             
-            />    <div className="row">
+            />    <div className="row sort">
 
             <span>Sort by:</span>
             <select name="category" value={sort} onChange={e=> setSort(e.target.value)} >

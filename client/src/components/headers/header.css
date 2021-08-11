@@ -9,9 +9,7 @@ header{
     border-bottom: 1px solid #ddd
 }
 
-header .logo{
-    flex:1
-}
+
 
 header a{
     text-transform: uppercase;
