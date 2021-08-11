@@ -4,6 +4,7 @@ import ProductItem from "../utils/productItem/ProductItem"
 import "./products.css"
 import Loading from "../utils/loading/Loading"
 import axios from "axios"
+import Filters from "./Filters"
 
 
 export default function Products() {
@@ -65,17 +66,28 @@ const checkAll = () =>{
 }
 
 
+const deleteAll = () =>{
+
+
+    products.forEach(product =>{
+          if(product.checked) deleteProduct(product._id, product.images.public_id)
+    })
+}
+
+
 
     if(loading) return <h5 className="products">Loading...</h5>
     return (
         <>
 
+          <Filters/>
+
                {isAdmin && 
                
-               <div className="delete-all">
+               <div className="delete-all"  >
                    <span>Select all</span>
                    <input type="checkbox" checked={isChecked} onChange={checkAll}/>
-                   <button>Delete All</button>
+                   <button onClick={deleteAll}>Delete All</button>
                </div>
                
                }
